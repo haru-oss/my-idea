@@ -1,19 +1,34 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
-type T = {
-  showFile: ()=>void
-}
 
-function App() {
 
-  const [inputFile,SetinputFile] =useState(null)
-  const handleFileChange = (event) => {
-    SetinputFile(event.target.files[0]);
+export const App:FC=()=> {
+
+  const [inputFile,SetinputFile] =useState<string | null>(null);
+
+
+  const handleFileChange=(event:React.ChangeEvent<HTMLInputElement>) => {
+
+    const file = event.target.files?.[0];
+
+
+
+
+    const fileReader = new FileReader();
+
+
+    fileReader.onload = (e)=> {
+      const content = e.target?.result as string;
+      const obj = JSON.parse(content);
+      console.log(obj)
+      SetinputFile(obj);
+    };
+
+    fileReader.readAsText(file);
+
   };
-  const f= JSON.parse(inputFile)
 
-
-  console.log(f)
+  console.log(inputFile)
 
 
 
@@ -32,6 +47,9 @@ function App() {
 
          <h1>移籍退会者リスト抽出いたします〜</h1>
 
+        
+
+
 
 
          <input type="file"  style={{margin:"100px"}} onChange={handleFileChange}/>
@@ -47,4 +65,4 @@ function App() {
   )
 }
 
-export default App;
+
