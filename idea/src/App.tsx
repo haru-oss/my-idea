@@ -1,5 +1,17 @@
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Box,
+
+} from '@chakra-ui/react'
+
 import { FC, useState } from "react";
 import { Member } from "./user";
+import { ChakraProvider } from "@chakra-ui/react";
 
 
 export const App:FC=()=> {
@@ -33,7 +45,7 @@ export const App:FC=()=> {
 
 
   return(
-    <>
+    <ChakraProvider>
 
 
       <div style={{
@@ -45,48 +57,48 @@ export const App:FC=()=> {
       }}>
 
 
-         <h1>移籍退会者リスト抽出いたします〜</h1>
+         <h1 style={{marginTop:"50px"}}>ファイルを貼ってください</h1>
 
          <input type="file"  style={{margin:"100px"}} onChange={handleFileChange}/>
 
          <button  style={{color:"purple",backgroundColor:"#deafde", padding:"5px",margin:"10px", borderRadius:"999px",cursor:"pointer"}}>change!!</button>
 
-
          {inputFile.length > 0 ?(
-          <table style={{border:"1px"}}>
-            <thead>
-                <tr>
-                  <th>会員詳細</th>
-                  <th>氏名（名）</th>
-                  <th>氏名（姓）</th>
-                  {/* <th>電話番号</th>
-                  <th>メール</th>
-                  <th>月会費</th> */}
-            </tr>
-            </thead>
-            <tbody>
-              {inputFile.map((file,index)=>(
-                <tr key={index}>
-                  <td>{file["会員詳細"]}</td>
-                  <td>{file["氏名（名）"]}</td>
-                  <td>{file["氏名（姓）"]}</td>
-                  {/* <td>{file["電話番号"]}</td>
-                  <td>{file["メール"]}</td>
-                  <td>{file["月会費"]}</td> */}
-                </tr>
 
-              ))}
-            </tbody>
-          </table>
+
+
+           <Table variant = 'simple' mx={"auto"} >
+                <Thead>
+                    <Tr>
+                      <Th>会員詳細</Th>
+                      <Th>氏名（名）</Th>
+                      <Th>氏名（姓）</Th>
+                </Tr>
+                </Thead>
+                <Tbody>
+                  {inputFile.map((file,index)=>(
+                    <Tr key={index}>
+                      <Td>{file["会員詳細"]}</Td>
+                      <Td>{file["氏名（名）"]}</Td>
+                      <Td>{file["氏名（姓）"]}</Td>
+                    </Tr>
+
+                  ))}
+                </Tbody>
+              </Table>
 
 
          ):(
           <p>No data available</p>
          )}
 
+
+
+
+
       </div>
 
-    </>
+    </ChakraProvider>
 
 
 
