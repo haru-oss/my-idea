@@ -5,7 +5,7 @@ import {
   Tr,
   Th,
   Td,
-  Box,
+
 
 } from '@chakra-ui/react'
 
@@ -67,7 +67,7 @@ export const App:FC=()=> {
 
 
 
-           <Table variant = 'simple' mx={"auto"} >
+           <Table variant = 'simple' ml={"22%"} >
                 <Thead>
                     <Tr>
                       <Th>会員詳細</Th>
@@ -106,3 +106,4 @@ export const App:FC=()=> {
 }
 
 
+// これはテスト
