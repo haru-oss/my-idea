@@ -1,22 +1,13 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-
-
-} from '@chakra-ui/react'
-
 import { FC, useState } from "react";
+import { ChakraProvider, Flex, Heading } from "@chakra-ui/react";
+import { UserTable } from './molquere/UserTable';
 import { Member } from "./user";
-import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
 
 
 export const App:FC=()=> {
 
-  const [inputFile,SetinputFile] =useState<Member[]>([]);
+  const [inputFile,setinputFile] =useState<Member[]>([]);
 
 
   const handleFileChange=(event:React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +24,7 @@ export const App:FC=()=> {
       const content = e.target?.result as string;
       const obj:Member[] = JSON.parse(content);
       console.log(obj)
-      SetinputFile(obj);
+      setinputFile(obj);
     };
 
     fileReader.readAsText(file);
@@ -45,60 +36,48 @@ export const App:FC=()=> {
 
 
   return(
+
     <ChakraProvider>
+         <BrowserRouter>
 
 
-      <div style={{
-        display:"flex",
-        justifyContent:"center",
-        alignItems: "center",
-
-        flexDirection: "column"
-      }}>
-
-
-         <h1 style={{marginTop:"50px"}}>ファイルを貼ってください</h1>
-
-         <input type="file"  style={{margin:"100px"}} onChange={handleFileChange}/>
-
-         <button  style={{color:"purple",backgroundColor:"#deafde", padding:"5px",margin:"10px", borderRadius:"999px",cursor:"pointer"}}>change!!</button>
-
-         {inputFile.length > 0 ?(
+           <Flex
+            justify="center"
+            align="center"
+            direction="column"
+            >
+              {/* layout */}
 
 
-
-           <Table variant = 'simple' ml={"22%"} >
-                <Thead>
-                    <Tr>
-                      <Th>会員詳細</Th>
-                      <Th>氏名（名）</Th>
-                      <Th>氏名（姓）</Th>
-                </Tr>
-                </Thead>
-                <Tbody>
-                  {inputFile.map((file,index)=>(
-                    <Tr key={index}>
-                      <Td>{file["会員詳細"]}</Td>
-                      <Td>{file["氏名（名）"]}</Td>
-                      <Td>{file["氏名（姓）"]}</Td>
-                    </Tr>
-
-                  ))}
-                </Tbody>
-              </Table>
+           {/* <Heading mt={"50px"}>ファイルを貼ってください</Heading> */}
+           {/* atomsにchildrenで入れる */}
+           {/* pagesで使用する */}
 
 
-         ):(
-          <p>No data available</p>
-         )}
+               <input type="file"  style={{margin:"100px"}} onChange={handleFileChange} />
+               {/* FileUploader */}
+               {/*  */}
 
 
 
 
 
-      </div>
 
-    </ChakraProvider>
+
+           {inputFile.length > 0 ?
+
+              (<UserTable  inputFile={inputFile}/>)  : (<p>No data available</p>)
+              }
+              {/* pages */}
+
+
+
+
+
+           </Flex>
+
+         </BrowserRouter>
+      </ChakraProvider>
 
 
 
