@@ -1,8 +1,51 @@
 import { FC } from "react"
+import { Member } from "../../user";
+import { useNavigate } from "react-router-dom";
+import { Flex } from "@chakra-ui/react";
 
-export const FileUploader:FC = () =>{
-    return(
-        <>
-        </>
+
+type Props ={
+    inputFile:Member[];
+    setInputFile:(obj:Member[])=>void
+
+}
+
+export const FileUploader:FC<Props> = (props) =>{
+    const {inputFile,setInputFile} =props;
+    const navigate =useNavigate()
+
+
+
+
+  const handleFileChange=(event:React.ChangeEvent<HTMLInputElement>):void => {
+
+    const file = event.target.files?.[0];
+
+
+
+    const fileReader = new FileReader();
+
+
+    fileReader.onload = (e)=> {
+      const content = e.target?.result as string;
+      const obj:Member[] = JSON.parse(content);
+      console.log(obj)
+      setInputFile(obj);
+      navigate("/result");
+    };
+
+    fileReader.readAsText(file);
+
+
+
+  };
+
+  console.log(inputFile)
+
+  return(
+      <Flex align="center" justify="center" m={"0"}>
+            <input type="file"  style={{margin:"100px"}} onChange={handleFileChange} />
+        </Flex>
     )
 }
+
