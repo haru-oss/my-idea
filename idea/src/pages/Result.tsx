@@ -26,3 +26,4 @@ export const Result:FC<Props> = (props)=>{
 
     </>)
 }
+

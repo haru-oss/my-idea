@@ -15,4 +15,5 @@ export type Member =  {
     "入会日": string | null;
     "入会ステータス": string | null;
     "Membrアプリのダウンロード": string;
+    "移籍日": string;
   }

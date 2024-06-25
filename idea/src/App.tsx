@@ -2,14 +2,14 @@ import { FC } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import { Kouter } from "./router/Router";
-import { Member } from "./user";
 
-type Props = {
-  inputFile:Member[]
-}
 
-export const App:FC<Props>=(props)=> {
-  const {inputFile} = props;
+
+export const App:FC=()=> {
+
+
+
+
 
 
 
@@ -18,20 +18,12 @@ export const App:FC<Props>=(props)=> {
     <ChakraProvider>
       <BrowserRouter>
 
-              <Kouter inputFile={inputFile} />
+              <Kouter/>
 
       </BrowserRouter>
     </ChakraProvider>
     </>
 
-)
-}
+)}
 
 
-// これはテスト
-{/* <Flex
-justify="center"
-align="center"
-direction="column"
-> */}
-// </Flex>
