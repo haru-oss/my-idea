@@ -2,7 +2,6 @@ import { FC } from "react"
 import { PageHeading } from "../atoms/buttons/heading/PageHeading"
 import { FileUploader } from "../atoms/input/FileUploader"
 import { Member } from "../user"
-import { Flex } from "@chakra-ui/react"
 
 type Props ={
     inputFile:Member[]
@@ -25,5 +24,3 @@ export const FileHere:FC<Props> = (props)=>{
 }
 
 
-// propsについてのエラーが発生していて、なかなか解決しない。
-//　　データの流れを落ち着いて分析していく必要がある。

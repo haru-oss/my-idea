@@ -15,13 +15,11 @@ export const App:FC=()=> {
 
   return(
     <>
-    <ChakraProvider>
-      <BrowserRouter>
-
-              <Kouter/>
-
-      </BrowserRouter>
-    </ChakraProvider>
+      <ChakraProvider>
+        <BrowserRouter>
+          <Kouter/>
+        </BrowserRouter>
+      </ChakraProvider>
     </>
 
 )}

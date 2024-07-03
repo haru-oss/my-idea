@@ -21,7 +21,11 @@ export const FileUploader:FC<Props> = (props) =>{
 
 
     const handleFileChange=(event:React.ChangeEvent<HTMLInputElement>):void => {
-    const file = event.target.files?.[0];
+    const file :File|undefined= event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
 
 
 
@@ -36,30 +40,22 @@ export const FileUploader:FC<Props> = (props) =>{
 
 
 
-const  filteredMembers = obj.filter((member:Member)=>{
+const  filteredMembers = obj
 
-        ///////////////////////////////////////////
+.filter((member:Member)=>{
+    const email = member["メール"]
+    const Tfyear = email.slice(-14,-10);
+    const Tfmonth = email.slice(-9,-8)
+    console.log(Tfmonth);
 
-        const email = member["メール"]
-        const Tfyear = email.slice(-14,-10);
-        const Tfmonth = email.slice(-9,-8)
-             console.log(Tfmonth);
-        ////////////////////////////////////////////////////
-
-  const now = new Date();
-  const nowMonth = String(now.getMonth());
-  const nowYear = String(now.getFullYear());
+    const now = new Date();
+    const nowMonth = String(now.getMonth());
+    const nowYear = String(now.getFullYear());
 
 
-  return(
-    (Tfyear===nowYear)&&(Tfmonth===nowMonth)
+    return Tfyear === nowYear && Tfmonth === nowMonth
 
-  )})
-
-
-
-
-
+  })
 .map((member)=>{
 
   const Tfday = member["メール"].slice(-14,-6)
@@ -69,15 +65,15 @@ const  filteredMembers = obj.filter((member:Member)=>{
     {  ...member,"移籍日":Tfday  }
 
 
-)})
+)});
 
 console.log(filteredMembers)
 
-      setInputFile(filteredMembers);
-      navigate("/result");
+setInputFile(filteredMembers);
+navigate("/result");
     };
 
-    fileReader.readAsText(file);
+    fileReader.readAsText(file)
 
 
 

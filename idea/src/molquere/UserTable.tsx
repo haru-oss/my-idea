@@ -30,8 +30,8 @@ export const UserTable:FC<Props> =(props)=>{
                         <Th>氏名（姓）</Th>
                         <Th>氏名（名）</Th>
                         <Th>移籍日</Th>
-                        <Th>メール</Th>
-                  </Tr>
+                        {/* <Th>メール</Th> */}
+                      </Tr>
                   </Thead>
                   <Tbody>
                     {inputFile.map((file,index)=>(
@@ -42,7 +42,7 @@ export const UserTable:FC<Props> =(props)=>{
                         <Td>{file["氏名（姓）"]}</Td>
                         <Td>{file["氏名（名）"]}</Td>
                         <Td>{file["移籍日"]}</Td>
-                        <Td>{file["メール"]}</Td>
+                        {/* <Td>{file["メール"]}</Td> */}
                       </Tr>
 
                     ))}
@@ -55,4 +55,3 @@ export const UserTable:FC<Props> =(props)=>{
     )
 }
 
-// ml={"22%"}  w="72%"
